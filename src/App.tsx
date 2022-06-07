@@ -1,10 +1,13 @@
 import Counter from './components/Counter';
+import { AppProvider } from './context/AppProvider';
 
 
 function App() {
   return (
     <div className="App">
-      <Counter />
+      <AppProvider>
+        <Counter />
+        </AppProvider>
     </div>
   );
 }

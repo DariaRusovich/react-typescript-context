@@ -4,7 +4,8 @@ import { AppState } from "./AppProvider";
 
 export type AppContextProps = {
     state: AppState,
-    toggleModalOpen: () => void
+    toggleModalOpen: (component: JSX.Element | null) => void
+    toggleModalClose: () => void
 }
 
 

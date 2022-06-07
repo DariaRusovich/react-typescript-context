@@ -1,16 +1,16 @@
 import { useReducer } from 'react';
+import ModalWindow from '../components/ModalWindow';
 import { AppContext } from './AppContext';
 import { AppReducer } from './AppReducer';
 
-
 export const initialState: AppState = {
   open: false,
-  count: 1,
+  component: null,
 };
+
 export interface AppState {
   open: boolean;
-  count: number;
-  payload?: number;
+  component: JSX.Element | null;
 }
 
 interface AppProviderProps {
@@ -19,11 +19,22 @@ interface AppProviderProps {
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
-    console.log(state);
-    const toggleModalOpen = () => {
-        dispatch({type: 'OPEN'})
-    }
+  const { component } = state;
+  console.log(state);
+
+  const toggleModalOpen = (component: JSX.Element | null) => {
+   dispatch({ type: 'OPEN', payload: component });
+  };
+
+  const toggleModalClose = () => {
+    dispatch({ type: 'CLOSE', payload: null });
+  }
   return (
-    <AppContext.Provider value={{ state, toggleModalOpen }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ state, toggleModalOpen, toggleModalClose }}>
+      <ModalWindow
+        component={component}
+      ></ModalWindow>
+      {children}
+    </AppContext.Provider>
   );
 };
