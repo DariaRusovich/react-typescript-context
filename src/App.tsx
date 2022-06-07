@@ -1,13 +1,12 @@
-import Counter from './components/Counter';
+import Modal from './components/Modal';
 import { AppProvider } from './context/AppProvider';
-
 
 function App() {
   return (
     <div className="App">
       <AppProvider>
-        <Counter />
-        </AppProvider>
+        <Modal />
+      </AppProvider>
     </div>
   );
 }

@@ -29,6 +29,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const toggleModalClose = () => {
     dispatch({ type: 'CLOSE', payload: null });
   }
+  
   return (
     <AppContext.Provider value={{ state, toggleModalOpen, toggleModalClose }}>
       <ModalWindow
